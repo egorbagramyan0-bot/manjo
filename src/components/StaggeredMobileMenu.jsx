@@ -387,17 +387,8 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
         <a 
           href="#hero" 
           onClick={(e) => handleLinkClick(e, '#hero', 'hero')}
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
+          style={{ textDecoration: 'none' }}
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-brass)' }}>
-            <path d="M12 2v4" />
-            <path d="M17 3v3" />
-            <path d="M7 3v3" />
-            <path d="M3 11h18" />
-            <path d="M19 11v1a7 7 0 0 1-14 0v-1" />
-            <path d="M7 18v3" />
-            <path d="M17 18v3" />
-          </svg>
           <span 
             className="font-serif" 
             style={{ 
