@@ -192,7 +192,7 @@ export default function BookingForm({ source = 'Главная страница'
         <form onSubmit={handleSubmit} className="bf-form">
           <div className="bf-header">
             <h3 className="font-serif">Забронировать стол</h3>
-            <p>Оставьте заявку, и администратор свяжется с вами для уточнения деталей визита</p>
+            <p>{"Оставьте заявку, и\u00A0администратор свяжется с\u00A0вами для\u00A0уточнения деталей визита"}</p>
           </div>
 
           <div className="bf-grid">
@@ -349,7 +349,7 @@ export default function BookingForm({ source = 'Главная страница'
                   name="comment"
                   className="bf-input bf-textarea"
                   disabled={isSubmitting}
-                  placeholder="Например: нужен детский стул или планируем отметить день рождения"
+                  placeholder="Например: нужен детский стул или\u00A0планируем отметить день рождения"
                   rows={2}
                   value={formData.comment}
                   onChange={handleChange}
@@ -385,7 +385,7 @@ export default function BookingForm({ source = 'Главная страница'
               )}
             </button>
             <span className="bf-policy-text">
-              Нажимая кнопку, вы соглашаетесь с{' '}
+              Нажимая кнопку, вы соглашаетесь с
               <a 
                 href="#contacts" 
                 onClick={(e) => {
@@ -398,7 +398,7 @@ export default function BookingForm({ source = 'Главная страница'
                 }}
                 className="bf-policy-link"
               >
-                политикой обработки персональных данных
+                {"\u00A0политикой обработки персональных данных"}
               </a>
             </span>
           </div>
@@ -409,7 +409,7 @@ export default function BookingForm({ source = 'Главная страница'
             <CheckCircle size={44} style={{ color: 'var(--color-deep-green-dark)' }} />
           </div>
           <h3 className="font-serif">Спасибо!</h3>
-          <p>Заявка отправлена. Администратор свяжется с вами для подтверждения бронирования.</p>
+          <p>{"Заявка отправлена. Администратор свяжется с\u00A0вами для\u00A0подтверждения бронирования."}</p>
           
           {onClose ? (
             <button onClick={onClose} className="btn bf-success-close-btn">

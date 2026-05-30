@@ -429,8 +429,8 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
             </span>
           </span>
           <span ref={iconRef} className="smm-icon">
-            <span className="smm-icon-line" />
-            <span className="smm-icon-line smm-icon-line-v" />
+            <span ref={plusHRef} className="smm-icon-line" />
+            <span ref={plusVRef} className="smm-icon-line smm-icon-line-v" />
           </span>
         </button>
 
