@@ -391,7 +391,12 @@ export default function Hero() {
           }
 
           .hero-mobile-overlay {
-            display: none;
+            display: block;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 20, 15, 0) 0%, rgba(0, 20, 15, 0.4) 50%, rgba(0, 20, 15, 0.85) 100%);
+            pointer-events: none;
+            z-index: 2;
           }
 
           .hero-container {
