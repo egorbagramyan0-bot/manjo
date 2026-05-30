@@ -169,8 +169,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', fontSize: '13px', color: 'rgba(244, 239, 228, 0.4)' }}>
-          <span>{"Разработано на\u00A0основе дизайн-системы Stitch."}</span>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '16px', fontSize: '13px', color: 'rgba(244, 239, 228, 0.4)' }}>
           <span>Политика конфиденциальности</span>
         </div>
 
