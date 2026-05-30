@@ -38,7 +38,9 @@ function createTextTexture(gl, text, font = "bold 30px monospace", color = "blac
   context.font = font
   const metrics = context.measureText(text)
   const textWidth = Math.ceil(metrics.width)
-  const textHeight = Math.ceil(parseInt(font, 10) * 1.2)
+  const sizeMatch = font.match(/(\d+)px/)
+  const fontSize = sizeMatch ? parseInt(sizeMatch[1], 10) : 30
+  const textHeight = Math.ceil(fontSize * 1.2)
   canvas.width = textWidth + 20
   canvas.height = textHeight + 20
   context.font = font
@@ -122,7 +124,8 @@ class Media {
     textColor,
     borderRadius = 0,
     font,
-    preserveAspectRatio = false
+    preserveAspectRatio = false,
+    showTitles = true
   }) {
     this.extra = 0
     this.geometry = geometry
@@ -142,7 +145,9 @@ class Media {
     this.preserveAspectRatio = preserveAspectRatio
     this.createShader()
     this.createMesh()
-    this.createTitle()
+    if (showTitles) {
+      this.createTitle()
+    }
     this.onResize()
   }
   createShader() {
@@ -337,7 +342,7 @@ class Media {
 }
 
 class App {
-  constructor(container, { items, bend, textColor = "#ffffff", borderRadius = 0, font = "bold 30px DM Sans" } = {}) {
+  constructor(container, { items, bend, textColor = "#ffffff", borderRadius = 0, font = "bold 30px DM Sans", showTitles = true } = {}) {
     document.documentElement.classList.remove('no-js')
     this.container = container
     this.scroll = { ease: 0.05, current: 0, target: 0, last: 0 }
@@ -349,7 +354,7 @@ class App {
     this.createScene()
     this.onResize()
     this.createGeometry()
-    this.createMedias(items, bend, textColor, borderRadius, font)
+    this.createMedias(items, bend, textColor, borderRadius, font, showTitles)
     this.update()
     this.addEventListeners()
   }
@@ -373,7 +378,7 @@ class App {
       widthSegments: 100
     })
   }
-  createMedias(items, bend = 1, textColor, borderRadius, font) {
+  createMedias(items, bend = 1, textColor, borderRadius, font, showTitles = true) {
     const { gl, scene, screen, viewport } = this
     const geometry = this.planeGeometry
 
@@ -420,7 +425,8 @@ class App {
         textColor,
         borderRadius,
         font,
-        preserveAspectRatio: false
+        preserveAspectRatio: false,
+        showTitles
       })
       return media
     })
@@ -579,17 +585,18 @@ export default function CircularGallery({
   bend = 3,
   textColor = "#163A2D",
   borderRadius = 0.05,
-  font = "bold 24px Georgia"
+  font = "bold 24px Georgia",
+  showTitles = true
 }) {
   const containerRef = useRef(null)
   
   useEffect(() => {
     if (!containerRef.current) return
-    const app = new App(containerRef.current, { items, bend, textColor, borderRadius, font })
+    const app = new App(containerRef.current, { items, bend, textColor, borderRadius, font, showTitles })
     return () => {
       app.destroy()
     }
-  }, [items, bend, textColor, borderRadius, font])
+  }, [items, bend, textColor, borderRadius, font, showTitles])
 
   return (
     <div className='circular-gallery-wrapper'>

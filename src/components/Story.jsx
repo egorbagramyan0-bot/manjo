@@ -34,6 +34,11 @@ export default function Story() {
 
   // IntersectionObserver for lazy mounting WebGL content
   useEffect(() => {
+    if (isMobile) {
+      setHasBeenVisible(true);
+      return;
+    }
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -49,7 +54,7 @@ export default function Story() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
 
   const containerVariants = {
     hidden: {},
@@ -168,6 +173,7 @@ export default function Story() {
             textColor="#163A2D" 
             borderRadius={isMobile ? 0.03 : 0.05}
             font={isMobile ? "bold 13px Georgia" : "bold 18px Georgia"}
+            showTitles={!isMobile}
           />
         )}
       </div>
