@@ -1,0 +1,155 @@
+/* Page Loader Overlay Styles */
+
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-deep-green-dark);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.pl-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 24px;
+}
+
+.pl-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Brand Text Elements */
+.pl-logo-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-ivory-light);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  animation: plTextIntro 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.pl-logo-sub {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--color-brass);
+  text-transform: uppercase;
+  display: block;
+  opacity: 0.8;
+  animation: plTextIntro 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Progress Indicator Container */
+.pl-progress-container {
+  width: 140px;
+  height: 2px;
+  background-color: rgba(244, 239, 228, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pl-progress-bar {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-brass-light);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* --- Loader States & Animations --- */
+
+.pl-initial-mount .pl-progress-bar,
+.pl-route-mount .pl-progress-bar {
+  transform: scaleX(0);
+}
+
+.pl-initial-visible .pl-progress-bar {
+  animation: plProgressBar 1.0s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.pl-route-visible .pl-progress-bar {
+  animation: plProgressBar 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.pl-exiting .pl-progress-bar {
+  transform: scaleX(1);
+}
+
+/* --- Keyframe Definitions --- */
+
+@keyframes plFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes plFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes plTextIntro {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes plProgressBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* prefers-reduced-motion Accessibility Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .pl-logo-text,
+  .pl-logo-sub {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .page-loader-overlay {
+    transition: opacity 0.15s ease !important;
+    transform: none !important;
+  }
+  
+  .page-loader-overlay.pl-exiting {
+    transition: opacity 0.15s ease !important;
+    transform: none !important;
+  }
+  
+  .pl-progress-bar {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
+}
+
+@keyframes plFadeInSimple {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes plFadeOutSimple {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

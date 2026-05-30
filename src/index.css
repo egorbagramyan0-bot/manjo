@@ -1,0 +1,404 @@
+:root {
+  /* Colors from Stitch DESIGN.md */
+  --color-ivory: #F4EFE4;
+  --color-ivory-light: #fef9ee;
+  --color-deep-green: #163A2D;
+  --color-deep-green-dark: #002419;
+  --color-olive: #6F7D52;
+  --color-olive-light: #56633b;
+  --color-brass: #B79A63;
+  --color-brass-light: #ffdea3;
+  --color-brass-dim: #e2c288;
+  --color-beige: #D9CBB8;
+  --color-beige-light: #e7e2d7;
+  --color-on-surface: #1d1c15;
+  --color-on-surface-variant: #414844;
+  --color-error: #ba1a1a;
+  
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Radii */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  
+  /* Spacing (8px grid) */
+  --space-unit: 8px;
+  --container-max: 1200px;
+  --gutter: 24px;
+}
+
+/* Base Settings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-deep-green);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography styles based on DESIGN.md */
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--color-deep-green-dark);
+}
+
+.display-lg {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .display-lg {
+    font-size: 36px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+  }
+}
+
+.headline-md {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.headline-sm {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.body-lg {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.body-md {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.label-caps {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.button-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  width: 100%;
+}
+
+.section-gap {
+  padding: 80px 0;
+}
+
+/* Custom Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-olive);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-deep-green);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-deep-green);
+  color: var(--color-ivory);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-deep-green-dark);
+  box-shadow: 0 4px 15px rgba(22, 58, 45, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-brass);
+  border: 1px solid var(--color-brass);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-brass);
+  color: var(--color-deep-green);
+  box-shadow: 0 0 15px rgba(183, 154, 99, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-minimalist {
+  background-color: transparent;
+  color: var(--color-deep-green);
+  padding: 8px 0;
+  border-radius: 0;
+  border-bottom: 1px solid transparent;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.btn-minimalist:hover {
+  border-bottom-color: var(--color-deep-green);
+}
+
+.btn-minimalist span {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.btn-minimalist:hover span {
+  transform: translateX(4px);
+}
+
+/* Dynamic Forms */
+.form-group {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-deep-green);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-beige-light);
+  border: none;
+  border-bottom: 1px solid var(--color-deep-green);
+  border-radius: var(--radius-sm);
+  color: var(--color-deep-green-dark);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-brass);
+  background-color: var(--color-ivory-light);
+  box-shadow: 0 4px 10px rgba(183, 154, 99, 0.05);
+}
+
+/* Custom cards */
+.menu-card {
+  background-color: var(--color-beige-light);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(22, 58, 45, 0.08), 0 0 15px rgba(183, 154, 99, 0.1);
+}
+
+.menu-card-image-container {
+  padding: 16px;
+  position: relative;
+}
+
+.menu-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform 0.5s ease;
+}
+
+.menu-card:hover .menu-card-image {
+  transform: scale(1.04);
+}
+
+.menu-card-content {
+  padding: 0 20px 20px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.menu-card-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-deep-green-dark);
+}
+
+.menu-card-price {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-brass);
+  margin-left: 12px;
+}
+
+.menu-card-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-on-surface-variant);
+  line-height: 20px;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.menu-card-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-olive);
+  background-color: rgba(111, 125, 82, 0.1);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge svg {
+  margin-right: 4px;
+}
+
+/* Glassmorphism Classes */
+.glass-nav {
+  background-color: rgba(244, 239, 228, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(22, 58, 45, 0.08);
+}
+
+/* Decorative Divider */
+.botanical-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  color: var(--color-olive);
+  opacity: 0.5;
+}
+
+.botanical-divider::before,
+.botanical-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-beige);
+  max-width: 100px;
+}
+
+.botanical-divider svg {
+  margin: 0 16px;
+}
+
+/* Overlay Elements */
+.bg-grain-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Lenis Smooth Scroll Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+

@@ -1,0 +1,694 @@
+/* Gallery Page Styling */
+
+.gp-page {
+  background-color: var(--color-ivory);
+  color: var(--color-deep-green);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* 1. Header Section */
+.gp-header {
+  padding: 170px 0 20px 0; /* Clears fixed desktop navbar (top: 24px + 85px height) */
+  text-align: center;
+  position: relative;
+  background-color: var(--color-deep-green-dark);
+  color: var(--color-ivory);
+  border-bottom: 1px solid rgba(244, 239, 228, 0.15);
+}
+
+.gp-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gp-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-brass);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-bottom: 24px;
+}
+
+.gp-back-link:hover {
+  color: var(--color-brass-light);
+}
+
+.gp-brand-badge {
+  font-size: 11px;
+  color: var(--color-brass);
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.gp-title {
+  font-size: 52px;
+  color: var(--color-brass-light);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gp-header-subtitle {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: rgba(244, 239, 228, 0.7);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 2. Banner Block */
+.gp-banner-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.gp-hero-banner-wrap {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 10px 30px rgba(0, 36, 25, 0.06);
+}
+
+.gp-hero-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.gp-hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 36, 25, 0.15) 0%, rgba(0, 36, 25, 0.45) 100%);
+  pointer-events: none;
+}
+
+/* 3. Category Filter Tabs */
+.gp-filters-nav {
+  margin-bottom: 40px;
+  padding: 12px 0;
+}
+
+.gp-filters-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 8px;
+  padding: 4px 8px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for category tabs container */
+.gp-filters-container::-webkit-scrollbar {
+  display: none;
+}
+.gp-filters-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.gp-filter-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--color-deep-green);
+  opacity: 0.65;
+  padding: 8px 18px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.gp-filter-btn:hover {
+  opacity: 1;
+  border-color: rgba(22, 58, 45, 0.15);
+  background-color: var(--color-beige-light);
+}
+
+.gp-filter-btn.active {
+  opacity: 1;
+  background-color: var(--color-deep-green);
+  color: var(--color-ivory);
+  border-color: var(--color-deep-green);
+  box-shadow: 0 4px 10px rgba(22, 58, 45, 0.12);
+}
+
+/* 4. Modular Photo Grid */
+.gp-grid-section {
+  margin-bottom: 80px;
+}
+
+.gp-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  grid-auto-flow: dense;
+}
+
+.gp-photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  background-color: var(--color-beige-light);
+  border: 1px solid rgba(22, 58, 45, 0.04);
+  box-shadow: 0 4px 15px rgba(22, 58, 45, 0.02);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gp-photo-card:hover {
+  border-color: var(--color-beige);
+  box-shadow: 0 12px 30px rgba(22, 58, 45, 0.08), 0 0 15px rgba(183, 154, 99, 0.05);
+  transform: translateY(-2px);
+}
+
+.gp-photo-img-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gp-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gp-photo-card:hover .gp-photo-img {
+  transform: scale(1.04);
+}
+
+/* Card sizes inside masonry grid */
+.gp-grid-square {
+  grid-column: span 1;
+  aspect-ratio: 1 / 1;
+}
+
+.gp-grid-wide {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9.5;
+}
+
+.gp-grid-tall {
+  grid-column: span 1;
+  aspect-ratio: 3 / 4.2;
+}
+
+/* Hover overlay and text */
+.gp-photo-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 36, 25, 0.9) 0%, rgba(0, 36, 25, 0.3) 50%, rgba(0, 36, 25, 0) 100%);
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gp-photo-card:hover .gp-photo-card-overlay {
+  opacity: 1;
+}
+
+.gp-photo-card-info {
+  transform: translateY(10px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--color-ivory);
+}
+
+.gp-photo-card:hover .gp-photo-card-info {
+  transform: translateY(0);
+}
+
+.gp-photo-card-title {
+  font-size: 20px;
+  color: var(--color-brass-light);
+  margin-bottom: 6px;
+}
+
+.gp-photo-card-desc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(244, 239, 228, 0.8);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 5. Accent Bento Block */
+.gp-accent-section {
+  margin-bottom: 80px;
+}
+
+.gp-accent-card {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; /* Clean parallax-like scroll or standard */
+  box-shadow: 0 10px 30px rgba(0, 36, 25, 0.05);
+}
+
+.gp-accent-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 36, 25, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.gp-accent-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-ivory);
+  max-width: 600px;
+  padding: 0 24px;
+}
+
+.gp-accent-title {
+  font-size: 32px;
+  color: var(--color-brass-light);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.gp-accent-text {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: rgba(244, 239, 228, 0.9);
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* 6. Banquets Page CTA Panel */
+.gp-banquets-cta-section {
+  margin-bottom: 60px;
+}
+
+.gp-banquet-cta-card {
+  background-color: var(--color-beige-light);
+  border: 1px solid var(--color-beige);
+  border-radius: var(--radius-2xl);
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 10px 30px rgba(0, 36, 25, 0.02);
+}
+
+.gp-banquet-cta-info {
+  flex-grow: 1;
+}
+
+.gp-banquet-cta-title {
+  font-size: 28px;
+  color: var(--color-deep-green-dark);
+  margin-bottom: 12px;
+}
+
+.gp-banquet-cta-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-on-surface-variant);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.gp-banquet-cta-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  padding: 14px 28px;
+}
+
+/* 7. Final Booking CTA */
+.gp-final-cta-section {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.gp-final-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 20, 15, 0.4) 0%, rgba(0, 20, 15, 0.75) 100%);
+  pointer-events: none;
+}
+
+.gp-final-cta-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--color-ivory);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gp-final-title {
+  font-size: 38px;
+  color: var(--color-ivory-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.gp-final-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  opacity: 0.9;
+  max-width: 480px;
+  margin-bottom: 32px;
+  color: var(--color-beige-light);
+}
+
+.gp-final-btn {
+  background-color: var(--color-brass);
+  color: var(--color-deep-green-dark);
+  border: 1px solid var(--color-brass);
+  font-weight: 700;
+  padding: 14px 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gp-final-btn:hover {
+  background-color: var(--color-brass-light);
+  border-color: var(--color-brass-light);
+  transform: translateY(-2px);
+}
+
+/* 8. Fullscreen Lightbox Modal */
+.gp-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background-color: rgba(0, 20, 15, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gp-lightbox-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 239, 228, 0.2);
+  color: var(--color-ivory);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1300;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.gp-lightbox-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.gp-lightbox-close-btn:active {
+  transform: scale(0.95);
+}
+
+.gp-lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(244, 239, 228, 0.1);
+  color: rgba(244, 239, 228, 0.6);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1250;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.gp-lightbox-nav-btn:hover {
+  color: var(--color-ivory);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(244, 239, 228, 0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gp-lightbox-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.gp-lightbox-nav-left {
+  left: 32px;
+}
+
+.gp-lightbox-nav-right {
+  right: 32px;
+}
+
+.gp-lightbox-content {
+  max-width: 80%;
+  max-height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1220;
+}
+
+.gp-lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.gp-lightbox-caption {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--color-ivory);
+  max-width: 640px;
+  padding: 0 16px;
+}
+
+.gp-lightbox-caption-title {
+  font-size: 22px;
+  color: var(--color-brass-light);
+  margin-bottom: 6px;
+}
+
+.gp-lightbox-caption-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: rgba(244, 239, 228, 0.85);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .gp-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .gp-grid-wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  .gp-grid-tall {
+    grid-column: span 1;
+    aspect-ratio: 3 / 4;
+  }
+
+  .gp-grid-square {
+    grid-column: span 1;
+    aspect-ratio: 1 / 1;
+  }
+  
+  .gp-banquet-cta-card {
+    padding: 32px;
+  }
+
+  .gp-lightbox-content {
+    max-width: 85%;
+  }
+
+  .gp-lightbox-nav-left {
+    left: 16px;
+  }
+
+  .gp-lightbox-nav-right {
+    right: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gp-header {
+    padding: 100px 0 30px 0;
+  }
+
+  .gp-title {
+    font-size: 36px;
+  }
+
+  .gp-hero-banner-wrap {
+    height: 280px;
+  }
+
+  .gp-filters-container {
+    justify-content: flex-start;
+    padding: 6px 12px;
+  }
+
+  .gp-filter-btn {
+    padding: 6px 14px;
+    font-size: 10.5px;
+  }
+
+  .gp-photo-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .gp-grid-wide, .gp-grid-tall, .gp-grid-square {
+    grid-column: span 1;
+    aspect-ratio: auto;
+    height: 250px;
+  }
+  
+  .gp-photo-card-overlay {
+    opacity: 1; /* Keep captions visible on touch viewports */
+    background: linear-gradient(to top, rgba(0, 36, 25, 0.8) 0%, rgba(0, 36, 25, 0.2) 60%, rgba(0, 36, 25, 0) 100%);
+    padding: 16px;
+  }
+
+  .gp-photo-card-title {
+    font-size: 17px;
+  }
+
+  .gp-photo-card-desc {
+    font-size: 12px;
+  }
+
+  .gp-photo-card-info {
+    transform: translateY(0);
+  }
+
+  .gp-accent-card {
+    height: 300px;
+  }
+
+  .gp-accent-title {
+    font-size: 24px;
+  }
+
+  .gp-accent-text {
+    font-size: 15px;
+  }
+
+  .gp-banquet-cta-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 24px 16px;
+    gap: 20px;
+  }
+
+  .gp-banquet-cta-title {
+    font-size: 22px;
+  }
+
+  .gp-banquet-cta-btn {
+    align-self: center;
+  }
+
+  .gp-final-cta-section {
+    height: 320px;
+  }
+
+  .gp-final-title {
+    font-size: 28px;
+  }
+
+  .gp-final-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  
+  /* Hide navigation buttons on mobile lightbox, swipes are used instead */
+  .gp-lightbox-nav-btn {
+    display: none !important;
+  }
+
+  .gp-lightbox-content {
+    max-width: 95%;
+  }
+
+  .gp-lightbox-img {
+    max-height: 60vh;
+  }
+
+  .gp-lightbox-caption-title {
+    font-size: 18px;
+  }
+
+  .gp-lightbox-caption-desc {
+    font-size: 13px;
+  }
+}

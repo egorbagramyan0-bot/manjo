@@ -1,0 +1,327 @@
+/* Staggered Mobile Menu - Adapted for Manjo Grill */
+
+.staggered-mobile-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.staggered-mobile-menu-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: transparent;
+  pointer-events: none;
+  z-index: 120;
+}
+
+.staggered-mobile-menu-header > * {
+  pointer-events: auto;
+}
+
+/* Glassmorphic header background when scrolled and closed, or transparent */
+.staggered-mobile-menu-header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 110;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.staggered-mobile-menu-header-bg.scrolled {
+  background-color: rgba(244, 239, 228, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(22, 58, 45, 0.08);
+}
+
+.staggered-mobile-menu-header-bg.open {
+  background: transparent;
+  border-bottom: none;
+}
+
+.smm-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  overflow: visible;
+  transition: color 0.3s ease;
+}
+
+.smm-toggle-textWrap {
+  position: relative;
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 50px;
+  text-align: right;
+}
+
+.smm-toggle-textInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.smm-toggle-line {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+.smm-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.smm-icon-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.smm-icon-line-v {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Staggered Menu Panel */
+.staggered-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-deep-green-dark);
+  display: flex;
+  flex-direction: column;
+  padding: 85px 32px 40px 32px;
+  overflow-y: auto;
+  z-index: 100;
+  pointer-events: auto;
+  opacity: 0;
+}
+
+/* Prelayers sliding animation */
+.smm-prelayers {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 95;
+  opacity: 0;
+}
+
+.smm-prelayer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(100%);
+}
+
+.smm-panel-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.smm-panel-list {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.smm-panel-itemWrap {
+  position: relative;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.smm-panel-item {
+  position: relative;
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.2rem;
+  cursor: pointer;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  text-decoration: none;
+  padding-right: 1.2em;
+  transition: color 0.3s ease;
+}
+
+.smm-panel-itemLabel {
+  display: inline-block;
+  will-change: transform;
+  transform-origin: 50% 100%;
+}
+
+.smm-panel-item:hover,
+.smm-panel-item:active {
+  color: var(--color-brass);
+}
+
+/* Numbering style matching React Bits */
+.smm-panel-list[data-numbering] {
+  counter-reset: smmItem;
+}
+
+.smm-panel-list[data-numbering] .smm-panel-item::after {
+  counter-increment: smmItem;
+  content: counter(smmItem, decimal-leading-zero);
+  position: absolute;
+  top: 0.15em;
+  right: 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-brass);
+  letter-spacing: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--smm-num-opacity, 0);
+  transition: opacity 0.5s ease;
+}
+
+/* Bottom footer of the menu panel */
+.smm-footer {
+  margin-top: 40px;
+  border-top: 1px solid rgba(244, 239, 228, 0.1);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.smm-socials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.smm-socials-link {
+  font-size: 14px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-ivory);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.smm-socials-link:hover,
+.smm-socials-link:active {
+  color: var(--color-brass);
+}
+
+.smm-phone {
+  font-size: 18px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--color-brass);
+  text-decoration: none;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+/* Watermark Background Monstera Leaf SVG */
+.smm-watermark {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 250px;
+  height: 250px;
+  opacity: 0.03;
+  color: var(--color-ivory);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Booking button at the bottom of the menu panel */
+.smm-booking-btn {
+  background-color: var(--color-brass);
+  color: var(--color-deep-green-dark);
+  border: 1px solid var(--color-brass);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(183, 154, 99, 0.15);
+  transition: all 0.3s ease;
+}
+
+.smm-booking-btn:active {
+  background-color: var(--color-brass-light);
+  transform: scale(0.98);
+}
+
+@media (min-width: 769px) {
+  .staggered-mobile-menu-wrapper {
+    display: none !important;
+  }
+}

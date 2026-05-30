@@ -1,0 +1,32 @@
+.circular-gallery-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 550px; /* Desktop default height */
+}
+
+.circular-gallery {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  outline: none;
+}
+
+.circular-gallery:active {
+  cursor: grabbing;
+}
+
+/* Tablet Sizing */
+@media (max-width: 1024px) {
+  .circular-gallery-wrapper {
+    height: 460px;
+  }
+}
+
+/* Mobile Sizing */
+@media (max-width: 768px) {
+  .circular-gallery-wrapper {
+    height: 360px;
+  }
+}
