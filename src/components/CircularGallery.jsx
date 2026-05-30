@@ -312,13 +312,21 @@ class Media {
     }
     
     this.scale = this.screen.height / 1500
+    const isMobile = this.screen.width <= 768
     
-    // Landscape rectangular layout sizing
-    this.plane.scale.x = (this.viewport.width * (850 * this.scale)) / this.screen.width
-    this.plane.scale.y = (this.viewport.height * (600 * this.scale)) / this.screen.height
+    if (isMobile) {
+      // Mobile-optimized sizing: width around 180px, height around 135px relative to container
+      this.plane.scale.x = (this.viewport.width * 180) / this.screen.width
+      this.plane.scale.y = (this.viewport.height * 135) / this.screen.height
+      this.padding = 0.8
+    } else {
+      // Landscape rectangular layout sizing
+      this.plane.scale.x = (this.viewport.width * (850 * this.scale)) / this.screen.width
+      this.plane.scale.y = (this.viewport.height * (600 * this.scale)) / this.screen.height
+      this.padding = 1.8
+    }
     
     this.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y]
-    this.padding = 1.8
     this.width = this.plane.scale.x + this.padding
     this.widthTotal = this.width * this.length
     this.x = this.width * this.index
@@ -372,9 +380,16 @@ class App {
     let galleryItems = items && items.length ? items : []
     const originalLength = galleryItems.length
     if (originalLength > 0) {
+      const isMobile = this.screen.width <= 768
       const scale = this.screen.height / 1500
-      const cardWidth = (this.viewport.width * (850 * scale)) / this.screen.width
-      const itemWidth = cardWidth + 1.8
+      
+      const cardWidth = isMobile 
+        ? (this.viewport.width * 180) / this.screen.width 
+        : (this.viewport.width * (850 * scale)) / this.screen.width
+      
+      const padding = isMobile ? 0.8 : 1.8
+      const itemWidth = cardWidth + padding
+      
       // We want the total width to cover at least 2.5x the viewport width to prevent gaps
       const targetWidth = this.viewport.width * 2.5
       const targetLength = Math.ceil(targetWidth / itemWidth)

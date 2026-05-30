@@ -34,8 +34,6 @@ export default function Story() {
 
   // IntersectionObserver for lazy mounting WebGL content
   useEffect(() => {
-    if (isMobile) return;
-    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -51,7 +49,7 @@ export default function Story() {
     }
 
     return () => observer.disconnect();
-  }, [isMobile]);
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -163,29 +161,14 @@ export default function Story() {
 
       {/* Lower Part: Gallery Block */}
       <div className="desktop-gallery-section" style={{ position: 'relative', zIndex: 2 }}>
-        {isMobile ? (
-          /* Lightweight horizontal swipe slider for mobile */
-          <div className="mobile-gallery-slider">
-            {restaurantGallery.map((item, index) => (
-              <div key={index} className="mobile-gallery-card">
-                <div className="mobile-gallery-img-wrap">
-                  <img src={item.image} alt={item.text} loading="lazy" />
-                </div>
-                <span className="mobile-gallery-text">{item.text}</span>
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Immersive WebGL Circular Gallery for desktop viewports */
-          hasBeenVisible && (
-            <CircularGallery 
-              items={restaurantGallery} 
-              bend={3} 
-              textColor="#163A2D" 
-              borderRadius={0.05}
-              font="bold 18px Georgia"
-            />
-          )
+        {hasBeenVisible && (
+          <CircularGallery 
+            items={restaurantGallery} 
+            bend={isMobile ? 1.5 : 3} 
+            textColor="#163A2D" 
+            borderRadius={isMobile ? 0.03 : 0.05}
+            font={isMobile ? "bold 13px Georgia" : "bold 18px Georgia"}
+          />
         )}
       </div>
     </section>
