@@ -89,7 +89,12 @@ export default function Hero() {
         <img 
           src="/hero2.png" 
           alt="Манжо Гриль" 
-          className="hero-bg-image"
+          className="hero-bg-image desktop-only-bg"
+        />
+        <img 
+          src="/heromob.png" 
+          alt="Манжо Гриль" 
+          className="hero-bg-image mobile-only-bg"
         />
         {/* Soft local left-to-right gradient overlay for desktop readability */}
         <div className="hero-desktop-overlay" />
@@ -201,6 +206,10 @@ export default function Hero() {
           height: 100%;
           object-fit: cover;
           object-position: center;
+        }
+
+        .mobile-only-bg {
+          display: none;
         }
 
         /* Ambient left-to-right gradient for desktop text contrast */
@@ -369,17 +378,20 @@ export default function Hero() {
 
         /* Mobile Layout */
         @media (max-width: 768px) {
+          .desktop-only-bg {
+            display: none;
+          }
+
+          .mobile-only-bg {
+            display: block;
+          }
+
           .hero-desktop-overlay {
             display: none;
           }
 
           .hero-mobile-overlay {
-            display: block;
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0, 20, 15, 0.1) 0%, rgba(0, 20, 15, 0.5) 45%, rgba(0, 20, 15, 0.85) 100%);
-            pointer-events: none;
-            z-index: 2;
+            display: none;
           }
 
           .hero-container {
