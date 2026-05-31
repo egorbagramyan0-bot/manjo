@@ -173,7 +173,7 @@ export default function Story() {
             textColor="#163A2D" 
             borderRadius={isMobile ? 0.03 : 0.05}
             font={isMobile ? "bold 13px Georgia" : "bold 18px Georgia"}
-            showTitles={!isMobile}
+            showTitles={false}
           />
         )}
       </div>
