@@ -41,6 +41,10 @@ export default function Navbar({ onBookingClick }) {
       setActiveSection('banquets');
       return;
     }
+    if (location.pathname === '/contacts') {
+      setActiveSection('contacts');
+      return;
+    }
 
     const sections = ['hero', 'story', 'reservation', 'contacts'];
     
@@ -129,13 +133,13 @@ export default function Navbar({ onBookingClick }) {
   const rightLinks = [
     { name: 'Банкеты', href: '/banquets', id: 'banquets' },
     { name: 'Галерея', href: '/gallery', id: 'gallery' },
-    { name: 'Контакты', href: '#contacts', id: 'contacts' },
+    { name: 'Контакты', href: '/contacts', id: 'contacts' },
   ];
 
   const handleLinkClick = (e, href, id) => {
     e.preventDefault();
 
-    if (id === 'menu' || id === 'gallery' || id === 'banquets') {
+    if (id === 'menu' || id === 'gallery' || id === 'banquets' || id === 'contacts') {
       setActiveSection(id);
       if (window.lenis) {
         window.lenis.scrollTo(0, { immediate: true });
@@ -146,6 +150,8 @@ export default function Navbar({ onBookingClick }) {
         navigate('/banquets');
       } else if (id === 'gallery') {
         navigate('/gallery');
+      } else if (id === 'contacts') {
+        navigate('/contacts');
       } else {
         navigate('/menu');
       }

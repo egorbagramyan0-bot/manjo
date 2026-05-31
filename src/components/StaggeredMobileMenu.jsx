@@ -35,7 +35,7 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
     { label: 'О ресторане', href: '#story', id: 'story' },
     { label: 'Банкеты', href: '/banquets', id: 'banquets' },
     { label: 'Галерея', href: '/gallery', id: 'gallery' },
-    { label: 'Контакты', href: '#contacts', id: 'contacts' }
+    { label: 'Контакты', href: '/contacts', id: 'contacts' }
   ];
 
   // Scroll tracking to change menu button color
@@ -326,7 +326,7 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
     e.preventDefault();
     closeMenu();
     
-    if (id === 'menu' || id === 'gallery' || id === 'banquets') {
+    if (id === 'menu' || id === 'gallery' || id === 'banquets' || id === 'contacts') {
       setTimeout(() => {
         if (window.lenis) {
           window.lenis.scrollTo(0, { immediate: true });
@@ -337,6 +337,8 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
           navigate('/banquets');
         } else if (id === 'gallery') {
           navigate('/gallery');
+        } else if (id === 'contacts') {
+          navigate('/contacts');
         } else {
           navigate('/menu');
         }
@@ -469,11 +471,6 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
               <li>
                 <a href="https://t.me/manjogrill" target="_blank" rel="noopener noreferrer" className="smm-socials-link">
                   Telegram
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/79185431111" target="_blank" rel="noopener noreferrer" className="smm-socials-link">
-                  WhatsApp
                 </a>
               </li>
             </ul>

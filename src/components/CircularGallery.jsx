@@ -163,12 +163,17 @@ class Media {
         uniform mat4 projectionMatrix;
         uniform float uTime;
         uniform float uSpeed;
+        uniform float uIsMobile;
         varying vec2 vUv;
         void main() {
           vUv = uv;
           vec3 p = position;
-          // Apply z-axis distortion only, no x/y distortion to maintain perfect circles
-          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+          if (uIsMobile > 0.5) {
+            p.z = 0.0;
+          } else {
+            // Apply z-axis distortion only, no x/y distortion to maintain perfect circles
+            p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+          }
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
       `,
@@ -219,7 +224,8 @@ class Media {
         uImageSizes: { value: [0, 0] },
         uSpeed: { value: 0 },
         uTime: { value: 100 * Math.random() },
-        uBorderRadius: { value: this.borderRadius }
+        uBorderRadius: { value: this.borderRadius },
+        uIsMobile: { value: 0.0 }
       },
       transparent: true
     })
@@ -272,16 +278,19 @@ class Media {
     const x = this.plane.position.x
     const H = this.viewport.width / 2
 
-    if (this.bend === 0) {
-      this.plane.position.y = 0
-      this.plane.rotation.z = 0
+    const isMobile = this.screen.width <= 768
+    const effectiveBend = isMobile ? 0.0 : this.bend
+
+    if (effectiveBend === 0.0) {
+      this.plane.position.y = 0.0
+      this.plane.rotation.z = 0.0
     } else {
-      const B_abs = Math.abs(this.bend)
+      const B_abs = Math.abs(effectiveBend)
       const R = (H * H + B_abs * B_abs) / (2 * B_abs)
       const effectiveX = Math.min(Math.abs(x), H)
 
       const arc = R - Math.sqrt(R * R - effectiveX * effectiveX)
-      if (this.bend > 0) {
+      if (effectiveBend > 0.0) {
         this.plane.position.y = -arc
         this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R)
       } else {
@@ -318,6 +327,7 @@ class Media {
     
     this.scale = this.screen.height / 1500
     const isMobile = this.screen.width <= 768
+    this.program.uniforms.uIsMobile.value = isMobile ? 1.0 : 0.0
     
     if (isMobile) {
       // Mobile-optimized sizing: width around 180px, height around 135px relative to container
@@ -359,7 +369,7 @@ class App {
     this.addEventListeners()
   }
   createRenderer() {
-    this.renderer = new Renderer({ alpha: true })
+    this.renderer = new Renderer({ alpha: true, dpr: Math.min(window.devicePixelRatio, 2) })
     this.gl = this.renderer.gl
     this.gl.clearColor(0, 0, 0, 0)
     this.container.appendChild(this.gl.canvas)
@@ -381,7 +391,7 @@ class App {
   createMedias(items, bend = 1, textColor, borderRadius, font, showTitles = true) {
     const { gl, scene, screen, viewport } = this
     const geometry = this.planeGeometry
-
+ 
     let galleryItems = items && items.length ? items : []
     const originalLength = galleryItems.length
     if (originalLength > 0) {
@@ -408,7 +418,7 @@ class App {
       }
     }
     this.items = galleryItems
-
+ 
     this.medias = galleryItems.map((item, index) => {
       const media = new Media({
         geometry,
@@ -479,7 +489,7 @@ class App {
     const now = Date.now()
     this.dragHistory = this.dragHistory.filter(item => now - item.time < 150)
     
-    if (e.cancelable && (e.touches || this.isDragging)) {
+    if (e.cancelable && this.isDragging) {
       e.preventDefault()
     }
   }

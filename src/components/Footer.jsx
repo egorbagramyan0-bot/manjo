@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
@@ -29,18 +30,27 @@ export default function Footer() {
           
           {/* Logo & Brand Info */}
           <div>
-            <h3 
-              className="font-serif" 
-              style={{ 
-                fontSize: '24px', 
-                color: 'var(--color-brass-light)', 
-                marginBottom: '16px', 
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}
-            >
-              Манжо Гриль
-            </h3>
+            <Link to="/" className="footer-brand-link" onClick={() => {
+              if (window.lenis) {
+                window.lenis.scrollTo(0, { immediate: true });
+              } else {
+                window.scrollTo({ top: 0 });
+              }
+            }}>
+              <h3 
+                className="font-serif" 
+                style={{ 
+                  fontSize: '24px', 
+                  color: 'var(--color-brass-light)', 
+                  marginBottom: '16px', 
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  transition: 'color 0.3s ease'
+                }}
+              >
+                Манжо Гриль
+              </h3>
+            </Link>
             <p 
               className="body-md" 
               style={{ 
@@ -87,7 +97,15 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', color: 'rgba(244, 239, 228, 0.8)' }}>
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <MapPin size={16} style={{ color: 'var(--color-brass)', marginTop: '4px', flexShrink: 0 }} />
-                <span>Ростов-на-Дону, проспект Соколова, 19/22</span>
+                <a 
+                  href="https://yandex.ru/maps/?text=Ростов-на-Дону,+проспект+Соколова,+19/22" 
+                  target="_blank" 
+                  rel="noreferrer noopener"
+                  style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s ease' }}
+                  className="footer-address-link"
+                >
+                  Ростов-на-Дону, проспект Соколова, 19/22
+                </a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Phone size={16} style={{ color: 'var(--color-brass)', flexShrink: 0 }} />
@@ -136,28 +154,6 @@ export default function Footer() {
                   <path d="M22 2 11 13" />
                 </svg>
               </a>
-              <a 
-                href="https://wa.me/79185431111" 
-                target="_blank"
-                rel="noreferrer noopener"
-                style={{ 
-                  color: 'var(--color-ivory)', 
-                  border: '1px solid rgba(244, 239, 228, 0.2)', 
-                  borderRadius: '50%',
-                  width: '38px',
-                  height: '38px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.3s ease'
-                }}
-                className="social-btn"
-              >
-                {/* Whatsapp SVG */}
-                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                </svg>
-              </a>
             </div>
             <p className="body-md" style={{ color: 'rgba(244, 239, 228, 0.4)', fontSize: '12px', lineHeight: '18px' }}>
               ООО "Атташе"<br/>
@@ -180,6 +176,15 @@ export default function Footer() {
           color: var(--color-brass-light) !important;
           border-color: var(--color-brass) !important;
           transform: translateY(-2px);
+        }
+        .footer-brand-link {
+          text-decoration: none;
+        }
+        .footer-brand-link:hover h3 {
+          color: var(--color-brass) !important;
+        }
+        .footer-address-link:hover {
+          color: var(--color-brass-light) !important;
         }
       `}</style>
     </footer>

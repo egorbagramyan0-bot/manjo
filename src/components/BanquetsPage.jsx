@@ -238,7 +238,6 @@ export default function BanquetsPage() {
   const contactOptions = [
     { key: 'phone', label: 'Позвонить' },
     { key: 'telegram', label: 'Telegram' },
-    { key: 'whatsapp', label: 'WhatsApp' },
     { key: 'max', label: 'MAX' }
   ];
 

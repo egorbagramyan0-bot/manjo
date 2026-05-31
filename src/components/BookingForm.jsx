@@ -322,7 +322,6 @@ export default function BookingForm({ source = 'Главная страница'
                 {[
                   { key: 'phone', label: 'Звонок' },
                   { key: 'telegram', label: 'Telegram' },
-                  { key: 'whatsapp', label: 'WhatsApp' },
                   { key: 'max', label: 'MAX' }
                 ].map((item) => (
                   <button

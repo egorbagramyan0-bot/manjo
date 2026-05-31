@@ -15,6 +15,7 @@ import PageLoader from './components/PageLoader';
 import Reservation from './components/Reservation';
 import Footer from './components/Footer';
 import LeafOverlay from './components/LeafOverlay';
+import ContactsPage from './components/ContactsPage';
 
 // Scroll To Anchor helper for cross-page navigation links (e.g. from /menu to /#story)
 function ScrollToAnchor({ displayLocation }) {
@@ -303,6 +304,7 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
           <Route path="/menu" element={<MenuPage onBookingClick={() => setIsBookingOpen(true)} />} />
           <Route path="/banquets" element={<BanquetsPage />} />
           <Route path="/gallery" element={<GalleryPage onBookingClick={() => setIsBookingOpen(true)} />} />
+          <Route path="/contacts" element={<ContactsPage onBookingClick={() => setIsBookingOpen(true)} />} />
         </Routes>
 
         {/* Contact and address block */}
