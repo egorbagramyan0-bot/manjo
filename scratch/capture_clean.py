@@ -38,6 +38,17 @@ async def main():
         await page.screenshot(path=os.path.join(artifacts_dir, "menu_top_clean.png"))
         print("Captured menu_top_clean.png")
         
+        # Go to contacts page
+        await page.goto('http://localhost:5173/contacts')
+        await page.wait_for_timeout(3500)
+        await page.screenshot(path=os.path.join(artifacts_dir, "contacts_top_clean.png"))
+        print("Captured contacts_top_clean.png")
+        
+        await page.evaluate("window.scrollTo(0, 150)")
+        await page.wait_for_timeout(1000)
+        await page.screenshot(path=os.path.join(artifacts_dir, "contacts_scrolled_clean.png"))
+        print("Captured contacts_scrolled_clean.png")
+        
         await browser.close()
 
 if __name__ == "__main__":

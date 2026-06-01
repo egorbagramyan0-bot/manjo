@@ -11,6 +11,8 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isContactsPage = location.pathname === '/contacts';
+  const shouldBeScrolled = isScrolled || isContactsPage;
 
   // DOM Refs for GSAP
   const wrapperRef = useRef(null);
@@ -41,7 +43,7 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
   // Scroll tracking to change menu button color
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 5) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -251,20 +253,20 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
     const btn = toggleBtnRef.current;
     if (!btn) return;
     colorTweenRef.current?.kill();
-    const targetColor = opening ? 'var(--color-ivory)' : (isScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)');
+    const targetColor = opening ? 'var(--color-ivory)' : (shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)');
     colorTweenRef.current = gsap.to(btn, {
       color: targetColor,
       duration: 0.3,
       ease: 'power2.out'
     });
-  }, [isScrolled]);
+  }, [shouldBeScrolled]);
 
   // Hook scroll button color to scroll changes when closed
   useEffect(() => {
     if (!open && toggleBtnRef.current) {
-      gsap.set(toggleBtnRef.current, { color: isScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)' });
+      gsap.set(toggleBtnRef.current, { color: shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)' });
     }
-  }, [isScrolled, open]);
+  }, [shouldBeScrolled, open]);
 
   // Main Toggle
   const toggleMenu = useCallback(() => {
@@ -379,7 +381,7 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
       
       {/* Dynamic Header Background when closed & scrolled */}
       <div 
-        className={`staggered-mobile-menu-header-bg ${isScrolled ? 'scrolled' : ''} ${open ? 'open' : ''}`} 
+        className={`staggered-mobile-menu-header-bg ${shouldBeScrolled ? 'scrolled' : ''} ${open ? 'open' : ''}`} 
       />
 
       {/* Header element overlay */}
@@ -397,7 +399,7 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
               fontSize: '20px', 
               fontWeight: '700', 
               letterSpacing: '0.04em', 
-              color: open ? 'var(--color-ivory)' : (isScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)'),
+              color: open ? 'var(--color-ivory)' : (shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)'),
               textTransform: 'uppercase',
               transition: 'color 0.3s ease'
             }}

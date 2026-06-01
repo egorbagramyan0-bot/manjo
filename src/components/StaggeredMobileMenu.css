@@ -1,7 +1,7 @@
 /* Staggered Mobile Menu - Adapted for Manjo Grill */
 
 .staggered-mobile-menu-wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,10 +30,10 @@
 /* Glassmorphic header background when scrolled and closed, or transparent */
 .staggered-mobile-menu-header-bg {
   position: absolute;
-  top: 0;
+  top: -20px;
   left: 0;
   width: 100%;
-  height: calc(70px + env(safe-area-inset-top, 0px));
+  height: calc(90px + env(safe-area-inset-top, 0px));
   z-index: 110;
   pointer-events: none;
   transition: all 0.3s ease;
