@@ -486,11 +486,17 @@ export default function MenuPage({ onBookingClick }) {
                   >
                     {/* Dish Image */}
                     <div className="mp-dish-card-img-wrap">
-                      <img 
-                        src={dish.image} 
-                        alt={dish.title} 
-                        className="mp-dish-card-img"
-                      />
+                      <picture>
+                        <source srcSet={dish.image.replace('.png', '_thumb.avif')} type="image/avif" />
+                        <source srcSet={dish.image.replace('.png', '_thumb.webp')} type="image/webp" />
+                        <img 
+                          src={dish.image.replace('.png', '_thumb.webp')} 
+                          alt={dish.title} 
+                          className="mp-dish-card-img"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
                     </div>
 
                     {/* Dish Content Body */}
@@ -607,11 +613,16 @@ export default function MenuPage({ onBookingClick }) {
 
               {/* Modal Banner Image */}
               <div style={{ height: '300px', width: '100%', position: 'relative', backgroundColor: 'var(--color-beige)' }}>
-                <img 
-                  src={selectedDish.image} 
-                  alt={selectedDish.title} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
+                <picture style={{ display: 'block', width: '100%', height: '100%' }}>
+                  <source srcSet={selectedDish.image.replace('.png', '_full.avif')} type="image/avif" />
+                  <source srcSet={selectedDish.image.replace('.png', '_full.webp')} type="image/webp" />
+                  <img 
+                    src={selectedDish.image.replace('.png', '_full.webp')} 
+                    alt={selectedDish.title} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    decoding="async"
+                  />
+                </picture>
                 <div 
                   style={{ 
                     position: 'absolute', 

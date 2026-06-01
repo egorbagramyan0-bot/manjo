@@ -348,8 +348,8 @@ export default function BookingForm({ source = 'Главная страница'
                   name="comment"
                   className="bf-input bf-textarea"
                   disabled={isSubmitting}
-                  placeholder="Например: нужен детский стул или\u00A0планируем отметить день рождения"
-                  rows={2}
+                  placeholder="Например: нужен детский стул или планируем отметить день рождения"
+                  rows={3}
                   value={formData.comment}
                   onChange={handleChange}
                 />

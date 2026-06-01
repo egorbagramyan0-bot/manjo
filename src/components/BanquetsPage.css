@@ -191,6 +191,12 @@
   box-shadow: 0 15px 40px rgba(0, 36, 25, 0.06);
 }
 
+.intro-image-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .intro-img {
   width: 100%;
   height: 100%;
@@ -290,6 +296,12 @@
   width: 100%;
   height: 400px;
   overflow: hidden;
+}
+
+.hall-img-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hall-img {
@@ -451,6 +463,12 @@
   box-shadow: 0 10px 30px rgba(0, 36, 25, 0.05);
   user-select: none;
   border: 1px solid var(--color-beige);
+}
+
+.gallery-drag-item picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .gallery-drag-img {

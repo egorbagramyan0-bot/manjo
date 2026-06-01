@@ -58,17 +58,23 @@ export default function MenuAnnounce() {
             onClick={handleMenuClick}
             className="menu-announce-img-wrap"
           >
-            <img 
-              src="/dish_grill.png" 
-              alt="Grill food teaser" 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover',
-                transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-              className="menu-announce-img"
-            />
+            <picture style={{ display: 'block', width: '100%', height: '100%' }}>
+              <source srcSet="/dish_grill_thumb.avif" type="image/avif" />
+              <source srcSet="/dish_grill_thumb.webp" type="image/webp" />
+              <img 
+                src="/dish_grill_thumb.webp" 
+                alt="Grill food teaser" 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+                className="menu-announce-img"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             {/* Visual overlay for depth */}
             <div 
               style={{

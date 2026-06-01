@@ -14,7 +14,6 @@ import GalleryPage from './components/GalleryPage';
 import PageLoader from './components/PageLoader';
 import Reservation from './components/Reservation';
 import Footer from './components/Footer';
-import LeafOverlay from './components/LeafOverlay';
 import ContactsPage from './components/ContactsPage';
 
 // Scroll To Anchor helper for cross-page navigation links (e.g. from /menu to /#story)
@@ -291,9 +290,6 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
 
         {/* Repeating tactile paper/grain background overlay */}
         <div className="grain-overlay" />
-
-        {/* Ambient background leaf overlays with spring-physics mouse parallax */}
-        <LeafOverlay />
 
         {/* Cross-page scroll anchor listener */}
         <ScrollToAnchor displayLocation={displayLocation} />

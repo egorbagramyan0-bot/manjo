@@ -5,14 +5,14 @@ import './Story.css';
 
 // Atmospheric photos data representing the restaurant
 const restaurantGallery = [
-  { image: '/gallery_hall.png', text: 'Основной зал' },
-  { image: '/gallery_grill.png', text: 'Блюда на огне' },
-  { image: '/gallery_fireplace.png', text: 'Каминная зона' },
-  { image: '/gallery_veranda.png', text: 'Летняя веранда' },
-  { image: '/gallery_cuisine.png', text: 'Авторская кухня' },
-  { image: '/gallery_bar.png', text: 'Бар' },
-  { image: '/gallery_evening.png', text: 'Вечерняя атмосфера' },
-  { image: '/gallery_table.png', text: 'Детали сервировки' }
+  { image: '/gallery_hall_thumb.webp', text: 'Основной зал' },
+  { image: '/gallery_grill_thumb.webp', text: 'Блюда на огне' },
+  { image: '/gallery_fireplace_thumb.webp', text: 'Каминная зона' },
+  { image: '/gallery_veranda_thumb.webp', text: 'Летняя веранда' },
+  { image: '/gallery_cuisine_thumb.webp', text: 'Авторская кухня' },
+  { image: '/gallery_bar_thumb.webp', text: 'Бар' },
+  { image: '/gallery_evening_thumb.webp', text: 'Вечерняя атмосфера' },
+  { image: '/gallery_table_thumb.webp', text: 'Детали сервировки' }
 ];
 
 export default function Story() {
@@ -34,11 +34,6 @@ export default function Story() {
 
   // IntersectionObserver for lazy mounting WebGL content
   useEffect(() => {
-    if (isMobile) {
-      setHasBeenVisible(true);
-      return;
-    }
-    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -54,7 +49,7 @@ export default function Story() {
     }
 
     return () => observer.disconnect();
-  }, [isMobile]);
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -78,7 +73,13 @@ export default function Story() {
     <section 
       id="story" 
       className="section-gap" 
-      style={{ backgroundColor: 'var(--color-ivory)', position: 'relative', overflow: 'hidden' }}
+      style={{ 
+        backgroundColor: 'var(--color-ivory)', 
+        position: 'relative', 
+        overflow: 'hidden',
+        paddingTop: '50px',
+        paddingBottom: '30px'
+      }}
       ref={sectionRef}
     >
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -155,8 +156,6 @@ export default function Story() {
                   <p className="story-expanded-text body-md">
                     {"Наши повара\u00A0— настоящие маги и\u00A0чародеи своего дела. Мы\u00A0готовим сочные стейки, рыбу и\u00A0морепродукты на\u00A0открытом гриле, придавая им\u00A0неповторимый аромат дыма. А\u00A0чтобы ваш вечер стал еще\u00A0более расслабляющим, мы\u00A0предлагаем лучшие кальяны в\u00A0городе от\u00A0наших мастеров и\u00A0авторские коктейли. В\u00A0данный момент мы\u00A0принимаем гостей в\u00A0нашем уютном зале и\u00A0веранде, и\u00A0с\u00A0нетерпением ждем скорого открытия основного большого зала ресторана, чтобы подарить вам еще\u00A0больше тепла и\u00A0вкуса!"}
                   </p>
-                  
-                  <span className="story-signature">Команда Манжо</span>
                 </div>
               </motion.div>
             )}

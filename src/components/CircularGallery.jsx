@@ -330,14 +330,14 @@ class Media {
     this.program.uniforms.uIsMobile.value = isMobile ? 1.0 : 0.0
     
     if (isMobile) {
-      // Mobile-optimized sizing: width around 180px, height around 135px relative to container
-      this.plane.scale.x = (this.viewport.width * 180) / this.screen.width
-      this.plane.scale.y = (this.viewport.height * 135) / this.screen.height
+      // Mobile-optimized sizing: width around 207px, height around 155px relative to container (+15%)
+      this.plane.scale.x = (this.viewport.width * 207) / this.screen.width
+      this.plane.scale.y = (this.viewport.height * 155) / this.screen.height
       this.padding = 0.8
     } else {
-      // Landscape rectangular layout sizing
-      this.plane.scale.x = (this.viewport.width * (850 * this.scale)) / this.screen.width
-      this.plane.scale.y = (this.viewport.height * (600 * this.scale)) / this.screen.height
+      // Landscape rectangular layout sizing (+15%)
+      this.plane.scale.x = (this.viewport.width * (978 * this.scale)) / this.screen.width
+      this.plane.scale.y = (this.viewport.height * (690 * this.scale)) / this.screen.height
       this.padding = 1.8
     }
     

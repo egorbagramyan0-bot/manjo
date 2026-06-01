@@ -4,12 +4,12 @@ import { Calendar, Users, Phone, MessageSquare, Send, CheckCircle, AlertTriangle
 import './BanquetsPage.css';
 
 const eventFormats = [
-  { name: 'Свадьбы', desc: 'Красивое торжество с\u00A0изысканной подачей', image: '/gallery_table.png' },
-  { name: 'Дни рождения', desc: 'Веселый праздник в\u00A0кругу близких', image: '/gallery_evening.png' },
-  { name: 'Юбилеи', desc: 'Особенная дата в\u00A0торжественной обстановке', image: '/hero2.png' },
-  { name: 'Корпоративы', desc: 'Стильное событие для\u00A0вашей команды', image: '/gallery_hall.png' },
-  { name: 'Семейные праздники', desc: 'Уютный вечер, полный тепла и\u00A0заботы', image: '/gallery_veranda.png' },
-  { name: 'Камерные ужины', desc: 'Индивидуальный формат для\u00A0узкого круга', image: '/gallery_fireplace.png' }
+  { name: 'Свадьбы', desc: 'Красивое торжество с\u00A0изысканной подачей', image: '/gallery_table_full.webp' },
+  { name: 'Дни рождения', desc: 'Веселый праздник в\u00A0кругу близких', image: '/gallery_evening_full.webp' },
+  { name: 'Юбилеи', desc: 'Особенная дата в\u00A0торжественной обстановке', image: '/hero2_desktop.webp' },
+  { name: 'Корпоративы', desc: 'Стильное событие для\u00A0вашей команды', image: '/gallery_hall_full.webp' },
+  { name: 'Семейные праздники', desc: 'Уютный вечер, полный тепла и\u00A0заботы', image: '/gallery_veranda_full.webp' },
+  { name: 'Камерные ужины', desc: 'Индивидуальный формат для\u00A0узкого круга', image: '/gallery_fireplace_full.webp' }
 ];
 
 const banquetHalls = [
@@ -17,31 +17,31 @@ const banquetHalls = [
     id: 'main',
     name: 'Основной зал',
     desc: 'Просторный и\u00A0светлый зал с\u00A0высокими потолками, панорамными окнами и\u00A0сценой для\u00A0проведения масштабных праздников и\u00A0больших компаний.',
-    image: '/gallery_hall.png'
+    image: '/gallery_hall_thumb.webp'
   },
   {
     id: 'cozy',
     name: 'Уютная зона',
     desc: 'Обособленное пространство с\u00A0мягким приглушенным светом и\u00A0расслабляющей атмосферой для\u00A0камерных мероприятий в\u00A0спокойной обстановке.',
-    image: '/gallery_fireplace.png'
+    image: '/gallery_fireplace_thumb.webp'
   },
   {
     id: 'general',
     name: 'Общий формат',
     desc: 'Размещение в\u00A0общем пространстве ресторана для\u00A0проведения праздника с\u00A0живой и\u00A0динамичной атмосферой «Манжо Гриль».',
-    image: '/gallery_veranda.png'
+    image: '/gallery_veranda_thumb.webp'
   }
 ];
 
 const galleryImages = [
-  { src: '/gallery_table.png', alt: 'Детали сервировки банкета' },
-  { src: '/gallery_hall.png', alt: 'Оформление праздничного зала' },
-  { src: '/gallery_evening.png', alt: 'Атмосфера вечернего праздника' },
-  { src: '/gallery_cuisine.png', alt: 'Подача банкетных блюд' },
-  { src: '/gallery_veranda.png', alt: 'Банкет на летней веранде' },
-  { src: '/gallery_fireplace.png', alt: 'Уютная каминная зона для встреч' },
-  { src: '/dish_grill.png', alt: 'Фирменные блюда на открытом огне' },
-  { src: '/hero2.png', alt: 'Застолье в интерьере ресторана' }
+  { src: '/gallery_table_thumb.webp', alt: 'Детали сервировки банкета' },
+  { src: '/gallery_hall_thumb.webp', alt: 'Оформление праздничного зала' },
+  { src: '/gallery_evening_thumb.webp', alt: 'Атмосфера вечернего праздника' },
+  { src: '/gallery_cuisine_thumb.webp', alt: 'Подача банкетных блюд' },
+  { src: '/gallery_veranda_thumb.webp', alt: 'Банкет на летней веранде' },
+  { src: '/gallery_fireplace_thumb.webp', alt: 'Уютная каминная зона для встреч' },
+  { src: '/dish_grill_thumb.webp', alt: 'Фирменные блюда на открытом огне' },
+  { src: '/hero2_desktop.webp', alt: 'Застолье в интерьере ресторана' }
 ];
 
 export default function BanquetsPage() {
@@ -285,7 +285,7 @@ export default function BanquetsPage() {
     <div className="banquets-page">
       
       {/* 1. Hero Screen */}
-      <section className="banquets-hero" style={{ backgroundImage: `url('/gallery_table.png')` }}>
+      <section className="banquets-hero" style={{ backgroundImage: `url('/gallery_table_full.webp')` }}>
         <div className="banquets-hero-overlay" />
         <div className="banquets-hero-content container">
           <motion.span 
@@ -363,7 +363,17 @@ export default function BanquetsPage() {
             </p>
           </div>
           <div className="intro-image-wrap">
-            <img src="/hero_conservatory.png" alt="Застолье в ресторане" className="intro-img" loading="lazy" />
+            <picture>
+              <source srcSet="/hero_conservatory_thumb.avif" type="image/avif" />
+              <source srcSet="/hero_conservatory_thumb.webp" type="image/webp" />
+              <img 
+                src="/hero_conservatory_thumb.webp" 
+                alt="Застолье в ресторане" 
+                className="intro-img" 
+                loading="lazy" 
+                decoding="async" 
+              />
+            </picture>
           </div>
         </div>
       </section>
@@ -406,7 +416,17 @@ export default function BanquetsPage() {
             {banquetHalls.map((hall) => (
               <div key={hall.id} className="hall-card">
                 <div className="hall-img-wrap">
-                  <img src={hall.image} alt={hall.name} className="hall-img" loading="lazy" />
+                  <picture>
+                    <source srcSet={hall.image.replace('.webp', '.avif')} type="image/avif" />
+                    <source srcSet={hall.image} type="image/webp" />
+                    <img 
+                      src={hall.image} 
+                      alt={hall.name} 
+                      className="hall-img" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
+                  </picture>
                 </div>
                 <div className="hall-info">
                   <h3 className="font-serif hall-name">{hall.name}</h3>
@@ -496,7 +516,18 @@ export default function BanquetsPage() {
           >
             {galleryImages.map((image, idx) => (
               <div key={idx} className="gallery-drag-item">
-                <img src={image.src} alt={image.alt} className="gallery-drag-img" draggable="false" loading="lazy" />
+                <picture>
+                  <source srcSet={image.src.replace('.webp', '.avif')} type="image/avif" />
+                  <source srcSet={image.src} type="image/webp" />
+                  <img 
+                    src={image.src} 
+                    alt={image.alt} 
+                    className="gallery-drag-img" 
+                    draggable="false" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </picture>
               </div>
             ))}
           </div>
@@ -745,7 +776,7 @@ export default function BanquetsPage() {
       </section>
 
       {/* 9. Final CTA */}
-      <section className="banquets-final-cta" style={{ backgroundImage: `url('/hero2.png')` }}>
+      <section className="banquets-final-cta" style={{ backgroundImage: `url('/hero2_desktop.webp')` }}>
         <div className="final-cta-overlay" />
         <div className="final-cta-content container">
           <h2 className="font-serif final-cta-title">{"Особенные вечера начинаются с\u00A0правильного места"}</h2>

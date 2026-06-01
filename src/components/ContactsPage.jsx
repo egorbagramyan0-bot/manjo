@@ -66,15 +66,21 @@ export default function ContactsPage({ onBookingClick }) {
               <span className="label-caps cp-brand-label">Манжо Гриль</span>
               <h1 className="font-serif cp-title">Контакты</h1>
               <p className="body-lg cp-description">
-                Мы всегда на связи. Забронируйте стол, уточните детали или постройте маршрут до ресторана.
+                {"Мы всегда на\u00A0связи. Забронируйте стол, уточните детали или\u00A0постройте маршрут до\u00A0ресторана."}
               </p>
             </div>
             <div className="cp-intro-image-wrap">
-              <img 
-                src="/gallery_evening.png" 
-                alt="Интерьер Манжо Гриль вечером" 
-                className="cp-intro-image"
-              />
+              <picture>
+                <source srcSet="/gallery_evening_thumb.avif" type="image/avif" />
+                <source srcSet="/gallery_evening_thumb.webp" type="image/webp" />
+                <img 
+                  src="/gallery_evening_thumb.webp" 
+                  alt="Интерьер Манжо Гриль вечером" 
+                  className="cp-intro-image"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div className="cp-intro-image-overlay" />
             </div>
           </div>
@@ -127,10 +133,10 @@ export default function ContactsPage({ onBookingClick }) {
               </div>
               <h3 className="font-serif cp-card-title">Режим работы</h3>
               <div className="cp-hours-block">
-                <p className="body-md cp-hours-days">Понедельник — Воскресенье</p>
-                <p className="cp-hours-time">10:00 — 00:00</p>
+                <p className="body-md cp-hours-days">{"Понедельник\u00A0— Воскресенье"}</p>
+                <p className="cp-hours-time">{"10:00\u00A0— 00:00"}</p>
               </div>
-              <p className="cp-hours-sub">Ждем вас каждый день без выходных!</p>
+              <p className="cp-hours-sub">{"Ждем вас каждый день без\u00A0выходных!"}</p>
             </div>
 
           </div>
@@ -141,7 +147,7 @@ export default function ContactsPage({ onBookingClick }) {
           <div className="cp-messengers-card">
             <h3 className="font-serif cp-messengers-title">Напишите нам</h3>
             <p className="body-md cp-messengers-text">
-              Выберите удобный мессенджер для быстрой связи с администратором:
+              {"Выберите удобный мессенджер для\u00A0быстрой связи с\u00A0администратором:"}
             </p>
             <div className="cp-messengers-buttons">
               <a 
@@ -165,7 +171,7 @@ export default function ContactsPage({ onBookingClick }) {
           <div className="cp-map-header">
             <h2 className="font-serif cp-map-title">Как нас найти</h2>
             <p className="body-md cp-map-subtitle">
-              Постройте маршрут и приезжайте провести вечер в «Манжо Гриль».
+              {"Постройте маршрут и\u00A0приезжайте провести вечер в\u00A0«Манжо Гриль»."}
             </p>
           </div>
           
@@ -208,7 +214,7 @@ export default function ContactsPage({ onBookingClick }) {
             <div className="cp-booking-info">
               <h2 className="font-serif cp-booking-title">Забронируйте стол заранее</h2>
               <p className="body-md cp-booking-text">
-                Оставьте заявку — администратор свяжется с вами и подтвердит бронирование.
+                {"Оставьте заявку\u00A0— администратор свяжется с\u00A0вами и\u00A0подтвердит бронирование."}
               </p>
             </div>
             <button 
@@ -228,7 +234,7 @@ export default function ContactsPage({ onBookingClick }) {
             <div className="cp-banquets-info">
               <h3 className="font-serif cp-banquets-title">Планируете мероприятие?</h3>
               <p className="body-md cp-banquets-text">
-                Для дней рождения, юбилеев, корпоративов и семейных праздников у нас есть отдельные форматы.
+                {"Для\u00A0дней рождения, юбилеев, корпоративов и\u00A0семейных праздников у\u00A0нас есть отдельные форматы."}
               </p>
             </div>
             <button 

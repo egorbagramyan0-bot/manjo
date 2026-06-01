@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 550px; /* Desktop default height */
+  height: 630px; /* Desktop default height (+15%) */
 }
 
 .circular-gallery {
@@ -20,13 +20,13 @@
 /* Tablet Sizing */
 @media (max-width: 1024px) {
   .circular-gallery-wrapper {
-    height: 460px;
+    height: 530px; /* (+15%) */
   }
 }
 
 /* Mobile Sizing */
 @media (max-width: 768px) {
   .circular-gallery-wrapper {
-    height: 360px;
+    height: 415px; /* (+15%) */
   }
 }

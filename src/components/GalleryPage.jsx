@@ -215,11 +215,17 @@ export default function GalleryPage({ onBookingClick }) {
       {/* 2. Banner Image */}
       <div className="container gp-banner-container">
         <div className="gp-hero-banner-wrap">
-          <img 
-            src="/hero_conservatory.png" 
-            alt="Атмосфера Манжо Гриль" 
-            className="gp-hero-banner-img"
-          />
+          <picture>
+            <source srcSet="/hero_conservatory_full.avif" type="image/avif" />
+            <source srcSet="/hero_conservatory_full.webp" type="image/webp" />
+            <img 
+              src="/hero_conservatory_full.webp" 
+              alt="Атмосфера Манжо Гриль" 
+              className="gp-hero-banner-img"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
           <div className="gp-hero-banner-overlay" />
         </div>
       </div>
@@ -270,12 +276,17 @@ export default function GalleryPage({ onBookingClick }) {
                     onClick={() => setSelectedPhotoIndex(index)}
                   >
                     <div className="gp-photo-img-wrap">
-                      <img 
-                        src={item.src} 
-                        alt={item.title} 
-                        className="gp-photo-img" 
-                        loading={index < 4 ? "eager" : "lazy"} 
-                      />
+                      <picture>
+                        <source srcSet={item.src.replace('.png', '_thumb.avif')} type="image/avif" />
+                        <source srcSet={item.src.replace('.png', '_thumb.webp')} type="image/webp" />
+                        <img 
+                          src={item.src.replace('.png', '_thumb.webp')} 
+                          alt={item.title} 
+                          className="gp-photo-img" 
+                          loading={index < 4 ? "eager" : "lazy"} 
+                          decoding="async"
+                        />
+                      </picture>
                       <div className="gp-photo-card-overlay">
                         <div className="gp-photo-card-info">
                           <h3 className="font-serif gp-photo-card-title">{item.title}</h3>
@@ -294,7 +305,7 @@ export default function GalleryPage({ onBookingClick }) {
       {/* 5. Accent Bento Block inside gallery */}
       <section className="gp-accent-section">
         <div className="container">
-          <div className="gp-accent-card" style={{ backgroundImage: `url('/gallery_fireplace.png')` }}>
+          <div className="gp-accent-card" style={{ backgroundImage: `url('/gallery_fireplace_full.webp')` }}>
             <div className="gp-accent-overlay" />
             <div className="gp-accent-content">
               <h2 className="font-serif gp-accent-title">Здесь каждый вечер складывается из деталей</h2>
@@ -336,7 +347,7 @@ export default function GalleryPage({ onBookingClick }) {
       </section>
 
       {/* 7. Final Booking CTA */}
-      <section className="gp-final-cta-section" style={{ backgroundImage: `url('/hero2.png')` }}>
+      <section className="gp-final-cta-section" style={{ backgroundImage: `url('/hero2_desktop.webp')` }}>
         <div className="gp-final-cta-overlay" />
         <div className="container gp-final-cta-container">
           <h2 className="font-serif gp-final-title">Увидимся в «Манжо Гриль»</h2>
@@ -392,11 +403,16 @@ export default function GalleryPage({ onBookingClick }) {
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
-              <img 
-                src={filteredItems[selectedPhotoIndex].src} 
-                alt={filteredItems[selectedPhotoIndex].title} 
-                className="gp-lightbox-img"
-              />
+              <picture>
+                <source srcSet={filteredItems[selectedPhotoIndex].src.replace('.png', '_full.avif')} type="image/avif" />
+                <source srcSet={filteredItems[selectedPhotoIndex].src.replace('.png', '_full.webp')} type="image/webp" />
+                <img 
+                  src={filteredItems[selectedPhotoIndex].src.replace('.png', '_full.webp')} 
+                  alt={filteredItems[selectedPhotoIndex].title} 
+                  className="gp-lightbox-img"
+                  decoding="async"
+                />
+              </picture>
               
               {/* Photo Caption */}
               <div className="gp-lightbox-caption">

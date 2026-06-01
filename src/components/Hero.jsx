@@ -86,16 +86,37 @@ export default function Hero() {
       
       {/* Background image & overlays */}
       <div className="hero-bg-container">
-        <img 
-          src="/hero2.png" 
-          alt="Манжо Гриль" 
-          className="hero-bg-image desktop-only-bg"
-        />
-        <img 
-          src="/heromob.png" 
-          alt="Манжо Гриль" 
-          className="hero-bg-image mobile-only-bg"
-        />
+        <picture>
+          {/* AVIF Sources */}
+          <source 
+            media="(max-width: 768px)" 
+            srcSet="/heromob_mobile.avif 1x, /heromob_mobile_2x.avif 2x" 
+            type="image/avif"
+          />
+          <source 
+            media="(min-width: 769px)" 
+            srcSet="/hero2_desktop.avif 1x, /hero2_desktop_2x.avif 2x" 
+            type="image/avif"
+          />
+          {/* WebP Sources */}
+          <source 
+            media="(max-width: 768px)" 
+            srcSet="/heromob_mobile.webp 1x, /heromob_mobile_2x.webp 2x" 
+            type="image/webp"
+          />
+          <source 
+            media="(min-width: 769px)" 
+            srcSet="/hero2_desktop.webp 1x, /hero2_desktop_2x.webp 2x" 
+            type="image/webp"
+          />
+          <img 
+            src="/hero2_desktop.webp" 
+            alt="Манжо Гриль" 
+            className="hero-bg-image"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         {/* Soft local left-to-right gradient overlay for desktop readability */}
         <div className="hero-desktop-overlay" />
         {/* Soft dark gradient from the bottom for mobile readability */}
