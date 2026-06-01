@@ -256,20 +256,20 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
     const btn = toggleBtnRef.current;
     if (!btn) return;
     colorTweenRef.current?.kill();
-    const targetColor = opening ? 'var(--color-ivory)' : (shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)');
+    const targetColor = opening ? 'var(--color-ivory)' : 'var(--color-deep-green-dark)';
     colorTweenRef.current = gsap.to(btn, {
       color: targetColor,
       duration: 0.3,
       ease: 'power2.out'
     });
-  }, [shouldBeScrolled]);
+  }, []);
 
-  // Hook scroll button color to scroll changes when closed
+  // Hook scroll button color to state changes when closed
   useEffect(() => {
     if (!open && toggleBtnRef.current) {
-      gsap.set(toggleBtnRef.current, { color: shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)' });
+      gsap.set(toggleBtnRef.current, { color: 'var(--color-deep-green-dark)' });
     }
-  }, [shouldBeScrolled, open]);
+  }, [open]);
 
   // Main Toggle
   const toggleMenu = useCallback(() => {
@@ -399,10 +399,10 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
           <span 
             className="font-serif" 
             style={{ 
-              fontSize: '20px', 
+              fontSize: '18px', 
               fontWeight: '700', 
               letterSpacing: '0.04em', 
-              color: open ? 'var(--color-ivory)' : (shouldBeScrolled ? 'var(--color-deep-green-dark)' : 'var(--color-ivory)'),
+              color: open ? 'var(--color-ivory)' : 'var(--color-deep-green-dark)',
               textTransform: 'uppercase',
               transition: 'color 0.3s ease'
             }}

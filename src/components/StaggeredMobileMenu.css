@@ -10,46 +10,46 @@
 }
 
 .staggered-mobile-menu-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: 12px;
+  right: 12px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: calc(1.2rem + env(safe-area-inset-top, 0px)) 1.5rem 1.2rem 1.5rem;
+  padding: 0 20px;
   background: transparent;
   pointer-events: none;
   z-index: 120;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .staggered-mobile-menu-header > * {
   pointer-events: auto;
 }
 
-/* Glassmorphic header background when scrolled and closed, or transparent */
+/* Floating capsule background in closed state */
 .staggered-mobile-menu-header-bg {
-  position: absolute;
-  top: -20px;
-  left: 0;
-  width: 100%;
-  height: calc(90px + env(safe-area-inset-top, 0px));
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  left: 12px;
+  right: 12px;
+  height: 54px;
   z-index: 110;
   pointer-events: none;
-  transition: all 0.3s ease;
-  background: transparent;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--color-ivory);
+  border: 1px solid rgba(22, 58, 45, 0.08);
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(0, 36, 25, 0.08);
+  opacity: 1;
 }
 
-.staggered-mobile-menu-header-bg.scrolled {
-  background-color: rgba(244, 239, 228, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(22, 58, 45, 0.08);
-}
-
+/* Hide background capsule when menu panel opens */
 .staggered-mobile-menu-header-bg.open {
-  background: transparent;
-  border-bottom: none;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.96);
 }
 
 .smm-toggle {
@@ -60,7 +60,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--color-ivory);
+  color: var(--color-deep-green-dark);
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 14px;
