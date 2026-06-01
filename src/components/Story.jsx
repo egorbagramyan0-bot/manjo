@@ -5,14 +5,16 @@ import './Story.css';
 
 // Atmospheric photos data representing the restaurant
 const restaurantGallery = [
-  { image: '/gallery_hall_thumb.webp', text: 'Основной зал' },
-  { image: '/gallery_grill_thumb.webp', text: 'Блюда на огне' },
-  { image: '/gallery_fireplace_thumb.webp', text: 'Каминная зона' },
-  { image: '/gallery_veranda_thumb.webp', text: 'Летняя веранда' },
-  { image: '/gallery_cuisine_thumb.webp', text: 'Авторская кухня' },
-  { image: '/gallery_bar_thumb.webp', text: 'Бар' },
-  { image: '/gallery_evening_thumb.webp', text: 'Вечерняя атмосфера' },
-  { image: '/gallery_table_thumb.webp', text: 'Детали сервировки' }
+  { image: '/manjo photo/pic1_thumb.webp', text: '' },
+  { image: '/manjo photo/pic2_thumb.webp', text: '' },
+  { image: '/manjo photo/pic3_thumb.webp', text: '' },
+  { image: '/manjo photo/pic4_thumb.webp', text: '' },
+  { image: '/manjo photo/pic5_thumb.webp', text: '' },
+  { image: '/manjo photo/pic6_thumb.webp', text: '' },
+  { image: '/manjo photo/pic7_thumb.webp', text: '' },
+  { image: '/manjo photo/pic8_thumb.webp', text: '' },
+  { image: '/manjo photo/pic9_thumb.webp', text: '' },
+  { image: '/manjo photo/pic10_thumb.webp', text: '' }
 ];
 
 export default function Story() {
