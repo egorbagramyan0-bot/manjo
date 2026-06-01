@@ -846,8 +846,7 @@
   }
   
   .banquets-hero-features {
-    position: static;
-    background-color: var(--color-deep-green-dark);
+    display: none;
   }
   
   .features-inner {
