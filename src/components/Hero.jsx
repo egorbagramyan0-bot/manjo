@@ -113,7 +113,7 @@ export default function Hero() {
             src="/hero2_desktop.webp" 
             alt="Манжо Гриль" 
             className="hero-bg-image"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
           />
         </picture>

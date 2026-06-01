@@ -74,6 +74,30 @@
 
 /* --- Loader States & Animations --- */
 
+/* Standard transitions for the loader states */
+.page-loader-overlay.pl-initial-mount {
+  opacity: 1;
+}
+
+.page-loader-overlay.pl-initial-visible {
+  opacity: 1;
+}
+
+.page-loader-overlay.pl-route-mount {
+  opacity: 0;
+}
+
+.page-loader-overlay.pl-route-visible {
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.page-loader-overlay.pl-exiting {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
 .pl-initial-mount .pl-progress-bar,
 .pl-route-mount .pl-progress-bar {
   transform: scaleX(0);

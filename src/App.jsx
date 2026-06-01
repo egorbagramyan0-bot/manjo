@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
@@ -153,9 +153,10 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
       }, delay);
     };
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
       setTimeout(handleLoad, 100);
     } else {
+      document.addEventListener('DOMContentLoaded', handleLoad);
       window.addEventListener('load', handleLoad);
     }
 
@@ -172,6 +173,7 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
     }, 2500);
 
     return () => {
+      document.removeEventListener('DOMContentLoaded', handleLoad);
       window.removeEventListener('load', handleLoad);
       clearTimeout(safeguardTimer);
       clearTimeout(visibleTimeout);
@@ -183,43 +185,70 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
   // 2. SPA Route Transition Animation
   useEffect(() => {
     if (location.pathname === displayLocationRef.current.pathname) return;
-    if (loaderStateRef.current === 'initial-mount' || loaderStateRef.current === 'initial-visible') return;
-    if (loaderStateRef.current !== 'idle') return;
+    
+    // Don't interrupt the initial page loader splash
+    if (
+      loaderStateRef.current === 'initial-mount' || 
+      loaderStateRef.current === 'initial-visible' || 
+      loaderStateRef.current === 'exiting'
+    ) {
+      setDisplayLocation(location);
+      return;
+    }
 
-    // Clear any existing transition timeouts
     clearTransitionTimeouts();
 
-    // Step 1: Mount the transition loader at opacity 0
+    // If loader is already visible (intermediate transition state), swap route instantly
+    // and skip directly to the exit transition.
+    if (loaderStateRef.current === 'route-mount' || loaderStateRef.current === 'route-visible') {
+      setDisplayLocation(location);
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+      
+      setLoaderState('route-visible');
+      const t3 = setTimeout(() => {
+        setLoaderState('exiting');
+        setIsPageVisible(true);
+        const t4 = setTimeout(() => {
+          setLoaderState('idle');
+        }, 600);
+        transitionTimeouts.current.push(t4);
+      }, 100);
+      transitionTimeouts.current.push(t3);
+      return;
+    }
+
+    // Normal transition sequence when loader is idle
     setLoaderState('route-mount');
 
     const t1 = setTimeout(() => {
-      // Step 2: Transition overlay to opacity 1 (takes 400ms)
       setLoaderState('route-visible');
 
       const t2 = setTimeout(() => {
-        // Step 3: Overlay is fully visible. Swap the route and hide page instantly
         setDisplayLocation(location);
         if (window.lenis) {
           window.lenis.scrollTo(0, { immediate: true });
         } else {
           window.scrollTo({ top: 0, behavior: 'instant' });
         }
-        setIsPageVisible(false); // hide page instantly
+        setIsPageVisible(false);
 
         const t3 = setTimeout(() => {
-          // Step 4: Start exiting loader and fading in page container
           setLoaderState('exiting');
-          setIsPageVisible(true); // fade in page container
+          setIsPageVisible(true);
 
           const t4 = setTimeout(() => {
             setLoaderState('idle');
-          }, 600); // 600ms exit transition
+          }, 600);
           transitionTimeouts.current.push(t4);
-        }, 50); // 50ms latency tick to let layout settle
+        }, 50);
         transitionTimeouts.current.push(t3);
-      }, 450); // 450ms (400ms fade-in transition + 50ms buffer)
+      }, 450);
       transitionTimeouts.current.push(t2);
-    }, 50); // 50ms to let browser register mount
+    }, 50);
     transitionTimeouts.current.push(t1);
 
     return () => {
@@ -301,6 +330,7 @@ function AppContent({ isBookingOpen, setIsBookingOpen }) {
           <Route path="/banquets" element={<BanquetsPage />} />
           <Route path="/gallery" element={<GalleryPage onBookingClick={() => setIsBookingOpen(true)} />} />
           <Route path="/contacts" element={<ContactsPage onBookingClick={() => setIsBookingOpen(true)} />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
         {/* Contact and address block */}

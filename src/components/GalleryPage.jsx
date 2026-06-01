@@ -222,7 +222,7 @@ export default function GalleryPage({ onBookingClick }) {
               src="/hero_conservatory_full.webp" 
               alt="Атмосфера Манжо Гриль" 
               className="gp-hero-banner-img"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
             />
           </picture>

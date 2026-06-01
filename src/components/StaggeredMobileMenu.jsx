@@ -57,11 +57,14 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
+      window.lenis?.stop();
     } else {
       document.body.style.overflow = '';
+      window.lenis?.start();
     }
     return () => {
       document.body.style.overflow = '';
+      window.lenis?.start();
     };
   }, [open]);
 
