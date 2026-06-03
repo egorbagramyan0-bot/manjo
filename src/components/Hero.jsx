@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronDown, Calendar, ArrowRight } from 'lucide-react';
 
@@ -47,9 +48,21 @@ const Sparks = () => {
 };
 
 export default function Hero() {
-  const handleScrollToMenu = (e) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToMenu = (e) => {
     e.preventDefault();
-    const element = document.querySelector('#menu');
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0 });
+    }
+    navigate('/menu');
+  };
+
+  const handleScrollToStory = (e) => {
+    e.preventDefault();
+    const element = document.querySelector('#story');
     if (element) {
       const offset = 110;
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -171,8 +184,8 @@ export default function Hero() {
               Забронировать стол
             </a>
             <a 
-              href="#menu" 
-              onClick={handleScrollToMenu}
+              href="/menu" 
+              onClick={handleNavigateToMenu}
               className="btn hero-btn-secondary"
             >
               Изучить меню
@@ -184,7 +197,7 @@ export default function Hero() {
         {/* Scroll Indicator */}
         <motion.div 
           className="hero-scroll-indicator"
-          onClick={handleScrollToMenu}
+          onClick={handleScrollToStory}
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
         >
