@@ -98,9 +98,8 @@ export default function Footer() {
               <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <MapPin size={16} style={{ color: 'var(--color-brass)', marginTop: '4px', flexShrink: 0 }} />
                 <a 
-                  href="https://yandex.ru/maps/?text=Ростов-на-Дону,+проспект+Соколова,+19/22" 
-                  target="_blank" 
-                  rel="noreferrer noopener"
+                  href="#" 
+                  onClick={(e) => e.preventDefault()} 
                   style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.3s ease' }}
                   className="footer-address-link"
                 >
@@ -109,7 +108,7 @@ export default function Footer() {
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Phone size={16} style={{ color: 'var(--color-brass)', flexShrink: 0 }} />
-                <a href="tel:+79185431111" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '600' }}>+7 (918) 543-11-11</a>
+                <a href="tel:+79999999999" style={{ color: 'inherit', textDecoration: 'none', fontWeight: '600' }}>+7 (999) 999-99-99</a>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Mail size={16} style={{ color: 'var(--color-brass)', flexShrink: 0 }} />
@@ -132,9 +131,8 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', gap: '16px', marginBottom: '20px' }}>
               <a 
-                href="https://t.me/manjogrill" 
-                target="_blank"
-                rel="noreferrer noopener"
+                href="#" 
+                onClick={(e) => e.preventDefault()}
                 style={{ 
                   color: 'var(--color-ivory)', 
                   border: '1px solid rgba(244, 239, 228, 0.2)', 
@@ -156,9 +154,8 @@ export default function Footer() {
               </a>
             </div>
             <p className="body-md" style={{ color: 'rgba(244, 239, 228, 0.4)', fontSize: '12px', lineHeight: '18px' }}>
-              ООО "Атташе"<br/>
-              ИНН: 6163101408 | ОГРН: 1106195002209<br/>
-              © {new Date().getFullYear()} «Манжо Гриль».
+              © {new Date().getFullYear()} «Манжо Гриль».<br/>
+              Демонстрационный сайт.
             </p>
           </div>
 

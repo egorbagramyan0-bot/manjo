@@ -542,9 +542,9 @@ export default function MenuPage({ onBookingClick }) {
             >
               Забронировать стол
             </button>
-            <a href="tel:+79185431111" className="mp-phone-link">
+            <a href="tel:+79999999999" className="mp-phone-link">
               <Phone size={15} />
-              +7 (918) 543-11-11
+              +7 (999) 999-99-99
             </a>
           </div>
         </div>

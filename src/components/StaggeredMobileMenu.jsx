@@ -466,15 +466,19 @@ export default function StaggeredMobileMenu({ onBookingClick }) {
           {/* Socials & CTAs footer inside panel */}
           <div className="smm-footer">
             
-            <a href="tel:+79185431111" className="smm-phone">
+            <a href="tel:+79999999999" className="smm-phone">
               <Phone size={16} style={{ marginRight: '6px', display: 'inline' }} />
-              +7 (918) 543-11-11
+              +7 (999) 999-99-99
             </a>
 
             {/* Social links */}
             <ul className="smm-socials-list">
               <li>
-                <a href="https://t.me/manjogrill" target="_blank" rel="noopener noreferrer" className="smm-socials-link">
+                <a 
+                  href="#" 
+                  onClick={(e) => e.preventDefault()} 
+                  className="smm-socials-link"
+                >
                   Telegram
                 </a>
               </li>
